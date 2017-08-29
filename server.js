@@ -17,30 +17,29 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // User reservation (DATA)
 // =============================================================
-var reserve = [
-   {customerID: 1
+var reserve = [{
+  customerID: 1,
   name: "khiem",
   phone: "0123456789",
-  email: "khiem@mail.com",
-  },
-  {customerID: 2
+  email: "khiem@mail.com"
+  },{
+  customerID: 2,
   name: "ami",
   phone: "1234567890",
-  email: "ami@mail.com",
-  },
-  {customerID: 3
+  email: "ami@mail.com"
+  },{
+  customerID: 3,
   name: "andrea",
   phone: "2345678901",
-  email: "andrea@mail.com",
-  },
-];
+  email: "andrea@mail.com"
+  }];
 //User in wait list(DATA)
 //==============================================================
-var waitList = [
-   {customerID: 4
+var waitList = [{
+  customerID: 4,
   name: "teddy",
   phone: "3456789012",
-  email: "teddy@mail.com",
+  email: "teddy@mail.com"
   }
 ];
 // Routes
@@ -58,19 +57,17 @@ app.get("/reserve", function(req, res) {
 });
 
 app.get("/api/tables", function(req, res) {
-  res.json(reservations);
+  res.json(reserve);
 });
 
-app.get("/api/tables", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
   res.json(waitList);
 });
 
 // Create New Characters - takes in JSON input
 app.post("/reserve", function(req, res) {
   var newReserve = req.body;
-  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newReserve);
+ console.log(newReserve);
 
   reserve.push(newReserve);
 
