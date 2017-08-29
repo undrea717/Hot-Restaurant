@@ -45,7 +45,7 @@ var waitList = [{
 // Routes
 // =============================================================
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "homepage.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/table", function(req, res) {
@@ -53,7 +53,7 @@ app.get("/table", function(req, res) {
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reservation.html"));
+  res.sendFile(path.join(__dirname, "make.html"));
 });
 
 app.get("/api/tables", function(req, res) {
