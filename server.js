@@ -48,8 +48,8 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/table", function(req, res) {
-  res.sendFile(path.join(__dirname, "table.html"));
+app.get("/tables", function(req, res) {
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 app.get("/reserve", function(req, res) {
