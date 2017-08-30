@@ -58,68 +58,42 @@
 	</div>
 
 <script type="text/javascript">
-	
-
 	function runTableQuery(){
-
 		var currentURL = window.location.origin;
-
 		$.ajax({url: currentURL + "/api/tables", method: "GET"})
 			.done(function(tableData) {
-
-				console.log("------------------------------------");
-				console.log("URL: " + currentURL + "/api/tables");
-				console.log("------------------------------------");
-				console.log(tableData);
-				console.log("------------------------------------")
-
+					$("#tableSection").empty();
+					$("#waitlistSection").empty();
+				// If number of customers <= 5, append to reserved table
+				for (var i=0; i<tableData.length && i < 5; i++){
+					var tableSection = $("<div>");
+					tableSection.addClass('well');
+					tableSection.attr('id', 'tableWell-' + i+1)
+					$('#tableSection').append(tableSection);
+					var tableNumber = i + 1;
+					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].name + "</h2>" + "<h4>" + " Phone: " + tableData[i].phone + "</h4>");
+				}
 				
-		for (var i=0; i<tableData.length; i++){
-
-					
-		var tableSection = $("<div>");
-		tableSection.addClass('well');
-		tableSection.attr('id', 'tableWell-' + i+1)
-	    $('#tableSection').append(tableSection);
-
-		var tableNumber = i + 1;
-
-
-		$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].name + "</h2>");
+				if (tableData.length > 4) {
+					runWaitListQuery(tableData);
 				}
 			});
 	}
-
-	function runWaitListQuery(){
-
-	
-		var currentURL = window.location.origin;
-
-		
-		$.ajax({url: currentURL + "/api/waitlist", method: "GET"})
-		.done(function(waitlistData) {
-
-                console.log("------------------------------------");
-				console.log("URL: " + currentURL + "/api/waitlist");
-				console.log("------------------------------------");
-                console.log(waitlistData);
-				console.log("------------------------------------")
-
-			
-		for (var i=0; i<waitlistData.length; i++){
-
-		var waitlistSection = $("<div>");
-		waitlistSection.addClass('well');
-		waitlistSection.attr('id', 'waitlistWell-' + i+1)
-		$('#waitlistSection').append(waitlistSection);
-
-		var tableNumber = i + 1;
-
+	// If cus
+	function runWaitListQuery(tableData){
+				// If number of customers > 5, append to waiting list
+				for (var i=5; i < tableData.length; i++){
 					
-		$("#waitlistWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + waitlistData[i].name + "</h2>");
+					var waitlistSection = $("<div>");
+					waitlistSection.addClass('well');
+					waitlistSection.attr('id', 'waitlistWell-' + i+1)
+					$('#waitlistSection').append(waitlistSection);
+					var tableNumber = i + 1;
+					
+					$("#waitlistWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].name + "</h2>");
 				}
-			});
 	}
+
 
 	
 	function clearTable(){
@@ -138,10 +112,8 @@
 	})
 
 	runTableQuery();
-	runWaitListQuery();
+	// runWaitListQuery();
 
-
-</script>
 
 </script>
 
