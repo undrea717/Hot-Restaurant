@@ -64,8 +64,8 @@ app.get("/api/waitlist", function(req, res) {
   res.json(waitList);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/reserve", function(req, res) {
+// Create New reserve - takes in JSON input
+app.post("/api/new", function(req, res) {
   var newReserve = req.body;
  console.log(newReserve);
 
