@@ -32,14 +32,33 @@ var reserve = [{
   name: "andrea",
   phone: "2345678901",
   email: "andrea@mail.com"
-  }];
-//User in wait list(DATA)
-//==============================================================
-var waitList = [{
-  customerID: 4,
+  },
+  {
+    customerID: 4,
   name: "teddy",
   phone: "3456789012",
   email: "teddy@mail.com"
+  },{
+  customerID: 5,
+  name: "Rohit",
+  phone: "4567890123",
+  email: "rohit@mail.com"
+  },
+  {
+  customerID: 6,
+  name: "test",
+  phone: "5678901234",
+  email: "test@mail.com"
+  }
+  ];
+
+//User in wait list(DATA)
+//==============================================================
+var waitList = [{
+  customerID: 6,
+  name: "test",
+  phone: "5678901234",
+  email: "test@mail.com"
   }
 ];
 // Routes
@@ -64,7 +83,7 @@ app.get("/api/waitlist", function(req, res) {
   res.json(waitList);
 });
 
-// Create New reserve - takes in JSON input
+// Create New Characters - takes in JSON input
 app.post("/api/new", function(req, res) {
   var newReserve = req.body;
  console.log(newReserve);
